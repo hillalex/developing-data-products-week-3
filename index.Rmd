@@ -1,0 +1,28 @@
+---
+title: "Cycling and walking trends in the UK"
+subtitle: "4th October 2021"
+author: "Alex Hill"
+output: ioslides_presentation
+keep_md: true
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(plotly)
+```
+
+## Cycling and walking in the UK
+
+```{r}
+cycling <- read.csv("data/cycling.csv")
+fig <- plot_ly(cycling, x = ~year, y = ~once_per_month, name = "Once a month", type = 'scatter', mode = 'lines')
+fig %>%
+  add_trace(y = ~once_per_week, name = 'Once a week', mode = 'lines') %>%
+  layout(title = "Percentage of adults in the UK who do any cycling or walking",
+         xaxis = list(title = "Year"),
+         yaxis = list(title = "%"))
+```
+
+## Acknowledgements
+
+Data from https://www.gov.uk/government/collections/walking-and-cycling-statistics
